@@ -13,23 +13,26 @@ cosmic_mutant_title,cosmic_mutant_data=import_file("/Users/radhikarawat/Desktop/
 
 mutants=[]
 IDs=[]
+i=0
+length=len(mutation_type_data)
 for ensembl_mutant in mutation_type_data:
+    i+=1
     cosmicID=ensembl_mutant[0]
     if cosmicID in IDs:
         print "duplicate"
-        #mutation_type_data=[x for x in mutation_type_data if x not in [ensembl_mutant]]
-        #mutation_type_data.remove(ensembl_mutant)
-        #print ensembl_mutant,"removed from mutation_type_data"
+        mutation_type_data=[x for x in mutation_type_data if x not in [ensembl_mutant]]
+        mutation_type_data.remove(ensembl_mutant)
+        print ensembl_mutant,"removed from mutation_type_data"
     elif cosmicID not in IDs:
         for cosmic_mutant in cosmic_mutant_data:
             cosmic_ID2=cosmic_mutant[0]
             if cosmic_ID2==cosmicID:
-                #cosmic_mutant_data = [x for x in cosmic_mutant_data if x not in [cosmic_mutant]]
-                #print cosmic_mutant, "removed from cosmic_mutant_data"
-                #IDs.append(cosmicID)
+                cosmic_mutant_data = [x for x in cosmic_mutant_data if x not in [cosmic_mutant]]
+                print cosmic_mutant, "removed from cosmic_mutant_data"
+                IDs.append(cosmicID)
                 cosmic_mutant.append(ensembl_mutant[1])
                 mutants.append(cosmic_mutant)
-                print cosmic_mutant
+                print cosmic_mutant, i, length
 
 
 print mutants

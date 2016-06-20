@@ -19,10 +19,9 @@ def import_file(pathstr,splitterstr,condition_value=str(), condition_index=int()
     f = open(path, 'U')
 
     data = []
-    rows=[]
+
     for row in f:
-        if row not in rows:
-            rows.append(row)
+
             if len(data) <= length:
                 if condition_value in str(row):
 
@@ -61,7 +60,7 @@ def import_file(pathstr,splitterstr,condition_value=str(), condition_index=int()
     data=data[1:]
     end=datetime.now()
     duration = end - start
-    rows=[]
+
     print data[:5]
     print path.split("/")[-1], ' data parsed and assigned as of', end,'. Time taken: ', duration
     return titles, data
